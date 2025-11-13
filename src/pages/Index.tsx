@@ -13,7 +13,7 @@ const Index = () => {
     message: ""
   });
   
-  const videoUrl = "https://vkvideo.ru/video_ext.php?oid=-233899553&id=456239017&hash=d8e0dc4a4e0b0e5e";
+  const videoUrl = "https://vkvideo.ru/video_ext.php?oid=-233899553&id=456239017&t=1s";
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
