@@ -72,17 +72,17 @@ const Index = () => {
             </p>
             
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-primary/10">
-              <div className="aspect-video bg-gradient-to-br from-primary/5 to-secondary/5 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-24 h-24 bg-accent rounded-full flex items-center justify-center mx-auto mb-6 hover:scale-110 transition-transform cursor-pointer">
-                    <Icon name="Play" className="text-white ml-1" size={48} />
-                  </div>
-                  <p className="text-lg text-muted-foreground">
-                    Добавьте ссылку на YouTube или загрузите видеофайл
-                  </p>
-                </div>
-              </div>
+              <iframe
+                src="https://disk.yandex.ru/i/RKR44KY_-zXpFg"
+                className="w-full aspect-video"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                title="Цифровая модель АСПО - демонстрация"
+              />
             </div>
+            <p className="text-center text-sm text-muted-foreground mt-4">
+              Демонстрация работы системы мониторинга отложений АСПО
+            </p>
           </div>
         </div>
       </section>
