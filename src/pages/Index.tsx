@@ -13,7 +13,8 @@ const Index = () => {
     message: ""
   });
   
-  const videoUrl = "https://vkvideo.ru/video_ext.php?oid=-233899553&id=456239017&hash=d8e0dc4a4e0b0e5e";
+  const videoOid = "-233899553";
+  const videoId = "456239017";
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -75,11 +76,12 @@ const Index = () => {
               Познакомьтесь с возможностями цифровой модели АСПО
             </p>
             
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-primary/10">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-primary/10 bg-black">
               <iframe
-                src={videoUrl}
+                src={`https://vk.com/video_ext.php?oid=${videoOid}&id=${videoId}&hd=2`}
                 className="w-full aspect-video"
-                allow="autoplay; fullscreen; picture-in-picture"
+                allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock"
+                frameBorder="0"
                 allowFullScreen
                 title="Цифровая модель АСПО - демонстрация"
               />
