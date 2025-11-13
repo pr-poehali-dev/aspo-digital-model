@@ -63,6 +63,30 @@ const Index = () => {
         </div>
       </section>
 
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">КАК ЭТО РАБОТАЕТ</h2>
+            <p className="text-center text-muted-foreground mb-12 text-lg">
+              Познакомьтесь с возможностями цифровой модели АСПО
+            </p>
+            
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-primary/10">
+              <div className="aspect-video bg-gradient-to-br from-primary/5 to-secondary/5 flex items-center justify-center">
+                <div className="text-center p-8">
+                  <div className="w-24 h-24 bg-accent rounded-full flex items-center justify-center mx-auto mb-6 hover:scale-110 transition-transform cursor-pointer">
+                    <Icon name="Play" className="text-white ml-1" size={48} />
+                  </div>
+                  <p className="text-lg text-muted-foreground">
+                    Добавьте ссылку на YouTube или загрузите видеофайл
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="capabilities" className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">ВОЗМОЖНОСТИ ПРОДУКТА</h2>
