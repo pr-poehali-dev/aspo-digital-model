@@ -376,7 +376,7 @@ Chernyshov.VT@gazprom-neft.ru</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Icon name="Phone" size={18} />
-                  <span>+7 (495) 123-45-67</span>
+                  <span>+7 (922) 821-93-58</span>
                 </div>
               </div>
             </div>
