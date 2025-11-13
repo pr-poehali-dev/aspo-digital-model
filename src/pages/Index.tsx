@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import Icon from "@/components/ui/icon";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const Index = () => {
   const [formData, setFormData] = useState({
@@ -12,10 +12,29 @@ const Index = () => {
     company: "",
     message: ""
   });
+  
+  const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
+  };
+
+  const handleVideoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 100 * 1024 * 1024) {
+        alert("Файл слишком большой. Максимум 100 МБ");
+        return;
+      }
+      
+      setIsUploading(true);
+      const url = URL.createObjectURL(file);
+      setVideoUrl(url);
+      setIsUploading(false);
+    }
   };
 
   return (
@@ -71,18 +90,64 @@ const Index = () => {
               Познакомьтесь с возможностями цифровой модели АСПО
             </p>
             
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-primary/10">
-              <iframe
-                src="https://disk.yandex.ru/i/RKR44KY_-zXpFg"
-                className="w-full aspect-video"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-                title="Цифровая модель АСПО - демонстрация"
-              />
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-primary/10 bg-gradient-to-br from-primary/5 to-secondary/5">
+              {videoUrl ? (
+                <video 
+                  controls 
+                  className="w-full aspect-video bg-black"
+                  preload="metadata"
+                >
+                  <source src={videoUrl} type="video/mp4" />
+                  <source src={videoUrl} type="video/webm" />
+                  Ваш браузер не поддерживает воспроизведение видео.
+                </video>
+              ) : (
+                <div className="aspect-video flex items-center justify-center p-8">
+                  <div className="text-center max-w-md">
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept="video/mp4,video/webm,video/ogg"
+                      onChange={handleVideoUpload}
+                      className="hidden"
+                    />
+                    <button
+                      onClick={() => fileInputRef.current?.click()}
+                      disabled={isUploading}
+                      className="group"
+                    >
+                      <div className="w-24 h-24 bg-accent rounded-full flex items-center justify-center mx-auto mb-6 hover:scale-110 transition-transform cursor-pointer group-hover:bg-accent/90">
+                        {isUploading ? (
+                          <Icon name="Loader2" className="text-white animate-spin" size={48} />
+                        ) : (
+                          <Icon name="Upload" className="text-white" size={48} />
+                        )}
+                      </div>
+                    </button>
+                    <p className="text-lg font-semibold mb-2">Загрузите видео</p>
+                    <p className="text-sm text-muted-foreground">
+                      Нажмите на иконку для выбора файла<br />
+                      Поддерживаются форматы: MP4, WebM (до 100 МБ)
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
-            <p className="text-center text-sm text-muted-foreground mt-4">
-              Демонстрация работы системы мониторинга отложений АСПО
-            </p>
+            {videoUrl && (
+              <div className="flex justify-center mt-4">
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setVideoUrl(null);
+                    if (fileInputRef.current) fileInputRef.current.value = "";
+                  }}
+                  className="gap-2"
+                >
+                  <Icon name="Trash2" size={16} />
+                  Удалить видео
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </section>
